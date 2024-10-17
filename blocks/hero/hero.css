@@ -57,3 +57,18 @@ main .hero-container {
     clear: both;
     font-family: "urw-din", sans-serif;
 }
+
+.hero a:any-link {
+  color: #000;
+  background-color: #FFF;
+  border-radius: 4px;
+     font-size: 1rem;
+     font-weight: 500;
+     text-align: left;
+     font-style: normal;
+     line-height: 22px;
+     padding: 0.85em 2.5em 0.85rem 1rem;
+     min-width: 10rem;
+     clear: both;
+     font-family: "urw-din", sans-serif;
+ }
