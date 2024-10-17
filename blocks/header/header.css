@@ -15,7 +15,7 @@ header nav {
   align-items: center;
   gap: 0 2em;
   margin: auto;
-  max-width: 1264px;
+  max-width: 1440px;
   height: var(--nav-height);
   padding: 0 1rem;
   font-family: var(--body-font-family);
@@ -32,7 +32,7 @@ header nav[aria-expanded='true'] {
 
 @media (width >= 600px) {
   header nav {
-    padding: 0 2rem;
+    padding: 0 0rem;
   }
 }
 
@@ -57,9 +57,11 @@ header nav a:any-link {
   color: currentcolor;
 }
 
+/*
 header nav a.button:any-link {
   background-color: #FFF;
 }
+*/
 
 /* hamburger */
 header nav .nav-hamburger {
@@ -149,10 +151,11 @@ header .nav-brand {
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  padding-left: 20px;
 }
 
 header nav .nav-brand img {
-  width: 128px;
+  width: 99px;
   height: auto;
 }
 
@@ -232,12 +235,17 @@ header nav .nav-sections ul > li > ul > li {
     gap: 2em;
     margin: 0;
     font-size: var(--body-font-size-xs);
+    justify-content: center;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;
+  }
+
+  u {
+    text-decoration: none;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
@@ -276,4 +284,5 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+  padding-right: 20px;
 }

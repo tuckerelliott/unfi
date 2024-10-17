@@ -1,14 +1,33 @@
 footer {
-  padding: 2rem;
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-s);
+  padding-top: 30rem;
+  padding-bottom: 0px;
+  background-image: url(https://www.unfi.com/content/dam/unfi-corporate/global/footer-image.jpg);
 }
 
 footer .footer {
   max-width: 1200px;
   margin: auto;
+  padding: 25px;
+  text-align: left;
+  background-color: #003749;
+  color: #FFF;
 }
 
 footer .footer p {
-  margin: 0;
+  margin: 10;
+  font-size: 0.9375rem;
+}
+
+footer .footer h2 {
+  font-size: 1.275rem;
+  line-height: normal;
+}
+
+footer .footer img {
+  max-width: 150px;
+  max-height: 73px;
+}
+
+footer .columns > div {
+  padding-top: 0px;
 }

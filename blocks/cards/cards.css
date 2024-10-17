@@ -3,13 +3,13 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   grid-gap: 16px;
 }
 
 .cards > ul > li {
   border: 1px solid var(--dark-color);
-  background-color: var(--background-color);
+  background-color: #edeef4;
 }
 
 .cards .cards-card-body {
@@ -28,4 +28,23 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+.cards h3 {
+  font-size: 1.875rem;
+  line-height: 2.5rem;
+}
+
+.cards p {
+  font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.2px;
+}
+
+.cards a.button {
+  all: unset;
+  text-decoration: underline;
 }
