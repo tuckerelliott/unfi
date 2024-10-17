@@ -1,7 +1,8 @@
+# mountpoints:
+#   /: https://adobe.sharepoint.com/:f:/r/sites/Solution-LedMSCTeam/Shared%20Documents/General/Edge%20Delivery%20Projects/unfi
+
 mountpoints:
   /:
     url: https://author-p99452-e916802.adobeaemcloud.com/bin/franklin.delivery/tuckerelliott/unfi/main
     type: markup
     suffix: ".html?wcmmode=disabled"
-# mountpoints:
-#   /: https://adobe.sharepoint.com/:f:/r/sites/Solution-LedMSCTeam/Shared%20Documents/General/Edge%20Delivery%20Projects/unfi
