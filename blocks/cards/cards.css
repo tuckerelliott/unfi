@@ -48,3 +48,8 @@
   all: unset;
   text-decoration: underline;
 }
+
+.cards a:any-link {
+  all: unset;
+  text-decoration: underline;
+}
