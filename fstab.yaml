@@ -1,4 +1,4 @@
-# mountpoints:
+mountpoints:
 #   /: https://adobe.sharepoint.com/:f:/r/sites/Solution-LedMSCTeam/Shared%20Documents/General/Edge%20Delivery%20Projects/unfi
 /:
   url: "https://author-p99452-e916802.adobeaemcloud.com/bin/franklin.delivery/tuckerelliott/unfi/main"
