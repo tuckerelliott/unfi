@@ -57,11 +57,9 @@ header nav a:any-link {
   color: currentcolor;
 }
 
-/*
-header nav a.button:any-link {
-  background-color: #FFF;
+header nav .nav-sections a:any-link {
+  background-color: #eee;
 }
-*/
 
 /* hamburger */
 header nav .nav-hamburger {
