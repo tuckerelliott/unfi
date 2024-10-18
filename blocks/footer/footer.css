@@ -16,11 +16,15 @@ footer .footer {
 footer .footer p {
   margin: 10;
   font-size: 0.9375rem;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 footer .footer h2 {
   font-size: 1.275rem;
   line-height: normal;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 footer .footer img {
@@ -33,5 +37,6 @@ footer .columns > div {
 }
 
 footer a:any-link {
+  all: unset;
   color: #FFF;
 }

@@ -32,3 +32,10 @@
     order: unset;
   }
 }
+
+.columns h2,
+h3,
+p {
+  padding-left: 100px;
+  padding-right: 100px;
+}
