@@ -15,9 +15,9 @@
 const createMetadata = (main, document) => {
   const meta = {};
 
-  const title = document.querySelector('title');
+  const title = document.querySelector("title");
   if (title) {
-    meta.Title = title.textContent.replace(/[\n\t]/gm, '');
+    meta.Title = title.textContent.replace(/[\n\t]/gm, "");
   }
 
   const desc = document.querySelector('[property="og:description"]');
@@ -25,20 +25,20 @@ const createMetadata = (main, document) => {
     meta.Description = desc.content;
   }
 
-  const noscript = main.querySelector('noscript');
+  const noscript = main.querySelector("noscript");
   if (noscript) noscript.remove();
 
-  const header = main.querySelector('.header');
+  const header = main.querySelector(".header");
   if (header) header.remove();
 
-  const footer = main.querySelector('.footer.section');
+  const footer = main.querySelector(".footer.section");
   if (footer) footer.remove();
 
-  main.querySelectorAll('iframe').forEach((el) => el.remove());
+  main.querySelectorAll("iframe").forEach((el) => el.remove());
 
   const img = document.querySelector('[property="og:image"]');
   if (img && img.content) {
-    const el = document.createElement('img');
+    const el = document.createElement("img");
     el.src = img.content;
     meta.Image = el;
   }
@@ -49,46 +49,93 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
+const createHero = (main, document) => {
+  const hero = {};
+
+  const title = document.querySelector("h1");
+  const img = document.querySelector("img");
+  const subheader = document.querySelector("div.p1");
+  const cells = [["Hero"], [img], [title], [subheader]];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  main.prepend(table);
+
+  return hero;
+};
+
 export default {
   /**
-     * Apply DOM operations to the provided document and return
-     * the root element to be then transformed to Markdown.
-     * @param {HTMLDocument} document The document
-     * @param {string} url The url of the page imported
-     * @param {string} html The raw html (the document is cleaned up during preprocessing)
-     * @param {object} params Object containing some parameters given by the import process.
-     * @returns {HTMLElement} The root element to be transformed
-     */
+   * Apply DOM operations to the provided document and return
+   * the root element to be then transformed to Markdown.
+   * @param {HTMLDocument} document The document
+   * @param {string} url The url of the page imported
+   * @param {string} html The raw html (the document is cleaned up during preprocessing)
+   * @param {object} params Object containing some parameters given by the import process.
+   * @returns {HTMLElement} The root element to be transformed
+   */
   transformDOM: ({
     // eslint-disable-next-line no-unused-vars
-    document, url, html, params,
+    document,
+    url,
+    html,
+    params,
   }) => {
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
 
     // use helper method to remove header, footer, etc.
-    WebImporter.DOMUtils.remove(main, [
-      'header',
-      'footer',
-    ]);
+    WebImporter.DOMUtils.remove(main, ["header", "footer"]);
 
     // create the metadata block and append it to the main element
     createMetadata(main, document);
+
+    // Handle anchor links or odd links
+    if (main.querySelector('a[href^="#"]')) {
+      const u = new URL(url);
+      const links = main.querySelectorAll('a[href^="#"]');
+      for (let i = 0; i < links.length; i += 1) {
+        const a = links[i];
+        a.href = `${u.pathname}${a.getAttribute("href")}`;
+      }
+    }
+
+    // Handle relative links
+    const HOSTNAME = new URL(params.originalURL).origin;
+    const relativeLinks = main.querySelectorAll('a[href^="/"]');
+    for (let i = 0; i < relativeLinks.length; i += 1) {
+      const a = relativeLinks[i];
+      a.href = `${HOSTNAME}${a.getAttribute("href")}`;
+    }
+
+    // final cleanup
+    WebImporter.DOMUtils.remove(main, [
+      ".megamenu",
+      ".footer",
+      ".cookie-consent-banner",
+    ]);
+
+    // create the hero block and append it to the main element
+    createHero(main, document);
 
     return main;
   },
 
   /**
-     * Return a path that describes the document being transformed (file name, nesting...).
-     * The path is then used to create the corresponding Word document.
-     * @param {HTMLDocument} document The document
-     * @param {string} url The url of the page imported
-     * @param {string} html The raw html (the document is cleaned up during preprocessing)
-     * @param {object} params Object containing some parameters given by the import process.
-     * @return {string} The path
-     */
+   * Return a path that describes the document being transformed (file name, nesting...).
+   * The path is then used to create the corresponding Word document.
+   * @param {HTMLDocument} document The document
+   * @param {string} url The url of the page imported
+   * @param {string} html The raw html (the document is cleaned up during preprocessing)
+   * @param {object} params Object containing some parameters given by the import process.
+   * @return {string} The path
+   */
   generateDocumentPath: ({
     // eslint-disable-next-line no-unused-vars
-    document, url, html, params,
-  }) => WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')),
+    document,
+    url,
+    html,
+    params,
+  }) =>
+    WebImporter.FileUtils.sanitizePath(
+      new URL(url).pathname.replace(/\.html$/, "").replace(/\/$/, "")
+    ),
 };
